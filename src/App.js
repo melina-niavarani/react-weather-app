@@ -11,7 +11,6 @@ function App() {
   function handleSubmit(value){
     let SearchingCity = value
     setCity(SearchingCity)
-    console.log(city)
   }
   const Api_Key = "866a208a73eeff02182218e9441647a1";
 
@@ -43,8 +42,8 @@ function App() {
       icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       wind: response.data.wind.speed,
     });
-    console.log(weather);
   }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -57,7 +56,7 @@ function App() {
             <ul>
               <li>{Math.round(weather.temperature)}°C</li>
               <li>{weather.description}</li>
-              <li><img srcSet={weather.icon} /></li>
+              <li><img srcSet={weather.icon} alt='weather-conditon-icon'/></li>
               <li>{weather.humidity}</li>
               <li>{weather.wind}</li>
             </ul>
