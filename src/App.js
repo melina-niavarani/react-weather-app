@@ -21,9 +21,10 @@ function App() {
         try {
           const response = await axios.get(url);
           setStatus(response);
+          setLoaded(true)
         } catch (error) {
           console.error('Error fetching data:', error);
-          setLoaded(true);
+          setLoaded(false);
         }
       }
     };
@@ -48,7 +49,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Search handleSubmit={handleSubmit}/>
-        {city? (     
+        {loaded? (     
           <div>
             <p>
               {city}
