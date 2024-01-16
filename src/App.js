@@ -12,6 +12,7 @@ function App() {
     let SearchingCity = value
     setCity(SearchingCity)
   }
+  
   const Api_Key = "866a208a73eeff02182218e9441647a1";
 
   useEffect(()=>{
@@ -40,7 +41,7 @@ function App() {
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       description: response.data.weather[0].main,
-      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@4x.png`,
       wind: response.data.wind.speed,
     });
   }
@@ -50,17 +51,22 @@ function App() {
       <header className="App-header">
         <Search handleSubmit={handleSubmit}/>
         {loaded? (     
-          <div>
-            <p>
-              {city}
-            </p>
-            <ul>
-              <li>{Math.round(weather.temperature)}°C</li>
-              <li>{weather.description}</li>
-              <li><img srcSet={weather.icon} alt='weather-conditon-icon'/></li>
-              <li>{weather.humidity}</li>
-              <li>{weather.wind}</li>
-            </ul>
+          <div className='container rounded bg-light bg-opacity-25 py-5 mt-5'>
+            <div className='d-flex justify-content-center align-items-center mb-5'>
+              <img srcSet={weather.icon} alt='weather-conditon-icon'/>
+              <div className='text-secondary'>
+                <p className="text-capitalize fw-bold fs-2 m-0">
+                  {city}
+                </p>
+                <div className='fs-5'>{Math.round(weather.temperature)}°C</div>
+                <div className='fs-6'>{weather.description}</div>
+              </div>
+            </div>
+            <hr></hr>
+            <div className='d-flex justify-content-evenly fw-bold'>
+              <span>💧{weather.humidity}</span>
+              <span>🌬️ {weather.wind}</span>
+            </div>
           </div>)
           : null
         }
